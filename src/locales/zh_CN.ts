@@ -67,6 +67,7 @@ export default {
   "main.tag.empty": "暂无标签",
   "main.tag.close": "收起选项",
   "main.cat": "文章分类",
+  "main.article.kind": "文章种类",
   "main.cat.empty": "暂无分类",
   "main.cat.select": "请选择分类",
   "main.yaml.formatter": "YAML Formatter",

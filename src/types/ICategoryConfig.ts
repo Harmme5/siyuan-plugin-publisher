@@ -26,6 +26,8 @@ interface ICategoryConfig {
    */
   readonlyMode: boolean
 
+  label?: string
+
   /**
    * 只读模式提示
    */

@@ -37,6 +37,8 @@ import { useLoadingTimer } from "~/src/composables/useLoadingTimer.ts"
 import PageUtils from "~/common/pageUtils.ts"
 import { ITagConfig } from "~/src/types/ITagConfig.ts"
 import { usePreferenceSettingStore } from "~/src/stores/usePreferenceSettingStore.ts"
+import { LocalSystemConfig } from "~/src/adaptors/fs/LocalSystem/LocalSystemConfig.ts"
+import { FsYamlType } from "~/src/adaptors/fs/LocalSystem/FsYamlType.ts"
 
 const logger = createAppLogger("single-publish-do-publish")
 
@@ -343,6 +345,14 @@ const syncPost = (post: Post) => {
   logger.debug("syncPost in single publish")
 }
 
+const getCategoryLabel = (cfg: BlogConfig, dynCfg: DynamicConfig) => {
+  const fsCfg = cfg as LocalSystemConfig
+  if (dynCfg?.platformType === PlatformType.Fs && fsCfg?.fsYamlType === FsYamlType.Hugo) {
+    return t("main.article.kind")
+  }
+  return undefined
+}
+
 const onBack = () => {
   const path = `/publish/singlePublish`
   logger.info("will go to =>", path)
@@ -427,6 +437,7 @@ onMounted(async () => {
       cateEnabled: cfg.cateEnabled,
       readonlyMode: formData.method === MethodEnum.METHOD_EDIT && !cfg.allowCateChange,
       readonlyModeTip: cfg?.placeholder?.cateReadonlyModeTip,
+      label: getCategoryLabel(cfg, formData.publishCfg.dynCfg),
       apiType: key,
       cfg: cfg,
     }

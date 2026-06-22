@@ -163,7 +163,7 @@ onMounted(async () => {
 
 <template>
   <div class="multi-categories" v-if="formData.categoryConfig.cateEnabled">
-    <el-form-item :label="t('main.cat')">
+    <el-form-item :label="formData.categoryConfig.label || t('main.cat')">
       <el-tree-select
         style="width: 100%"
         v-model="formData.cate.categorySelected"

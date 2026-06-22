@@ -45,6 +45,14 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
     this.logger = createAppLogger("local-system-adaptor")
   }
 
+  private getEffectiveStorePath(localFsCfg: LocalSystemConfig): string {
+    const storePath = localFsCfg.storePath ?? ""
+    if (storePath.includes(CATE_AUTO_NAME) && !StrUtil.isEmptyString(localFsCfg.realStorePath)) {
+      return localFsCfg.realStorePath
+    }
+    return storePath
+  }
+
   /**
    * 通用校验逻辑调用
    *
@@ -105,6 +113,7 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
 
   public override async preEditPost(post: Post, id?: string, publishCfg?: any): Promise<Post> {
     const localFsCfg = this.cfg as LocalSystemConfig
+    localFsCfg.realStorePath = localFsCfg.storePath
 
     if (localFsCfg.storePath.includes(CATE_AUTO_NAME)) {
       // 自动分类
@@ -156,7 +165,7 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
       }
     }
 
-    if (updatedPost?.cate_slugs.length > 0) {
+    if (localFsCfg.storePath.includes(CATE_AUTO_NAME) && updatedPost?.cate_slugs?.length > 0) {
       localFsCfg.realStorePath = localFsCfg.storePath.replace(CATE_AUTO_NAME, updatedPost.cate_slugs[0])
     }
 
@@ -173,10 +182,7 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
     // const yaml = post.yaml
 
     // 存储基础路径
-    let storePath = localFsCfg.storePath
-    if (!StrUtil.isEmptyString(localFsCfg.realStorePath)) {
-      storePath = localFsCfg.realStorePath
-    }
+    const storePath = this.getEffectiveStorePath(localFsCfg)
 
     // 保存到文件
     // 文件路径是 storePath
@@ -191,6 +197,9 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
     if (EnvUtil.ensurePath(storePath)) {
       // 直接写入文件
       flag = EnvUtil.writeFile(filePath, content)
+      if (flag) {
+        post.postid = filePath
+      }
       this.logger.info(`Post saved locally: ${filePath}`)
     } else {
       this.logger.error(`Failed to create directory: ${storePath}`)
@@ -218,10 +227,7 @@ class LocalSystemApiAdaptor extends BaseBlogApi {
     this.logger.debug("Ensure that the save path exists...", localFsCfg)
 
     // 存储基础路径
-    let storePath = localFsCfg.storePath
-    if (!StrUtil.isEmptyString(localFsCfg.realStorePath)) {
-      storePath = localFsCfg.realStorePath
-    }
+    const storePath = this.getEffectiveStorePath(localFsCfg)
 
     const absStorePath = storePath
     const absImagePath = StrUtil.pathJoin(absStorePath, localFsCfg.imageStorePath ?? "assets")

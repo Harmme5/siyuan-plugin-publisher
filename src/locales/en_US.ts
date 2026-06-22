@@ -69,6 +69,7 @@ export default {
   "main.tag.auto.switch": "Tag switch",
   "main.tag.auto.switch.no.tip": "Auto tag is closed",
   "main.cat": "Category",
+  "main.article.kind": "Article type",
   "main.cat.empty": "No Category",
   "main.cat.select": "Please select category",
   "main.yaml.formatter": "YAML Formatter",

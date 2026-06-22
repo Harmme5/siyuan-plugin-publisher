@@ -15,6 +15,9 @@ import { usePublishSettingStore } from "~/src/stores/usePublishSettingStore.ts"
 import { JsonUtil, ObjectUtil, StrUtil } from "zhi-common"
 import { getDynPostidKey } from "~/src/platforms/dynamicConfig.ts"
 import { FsUtils } from "~/src/adaptors/fs/LocalSystem/FsUtils.ts"
+import { CategoryTypeEnum } from "zhi-blog-api"
+import { FsYamlType } from "~/src/adaptors/fs/LocalSystem/FsYamlType.ts"
+import { CATE_AUTO_NAME } from "~/src/utils/constants.ts"
 
 /**
  * 本地系统适配器
@@ -43,10 +46,19 @@ const useLocalSystemApi = async (key: string, newCfg?: LocalSystemConfig) => {
     }
   }
 
+  if (StrUtil.isEmptyString(cfg.fsYamlType)) {
+    cfg.fsYamlType = FsYamlType.Default
+  }
+  if (!StrUtil.isEmptyString(cfg.storePath) && !cfg.storePath.includes(CATE_AUTO_NAME)) {
+    cfg.realStorePath = cfg.storePath
+  }
+
   const appInstance = new PublisherAppInstance()
 
   cfg.tagEnabled = true
   cfg.cateEnabled = true
+  cfg.categoryType =
+    cfg.fsYamlType === FsYamlType.Default ? CategoryTypeEnum.CategoryType_None : CategoryTypeEnum.CategoryType_Multi
   // picbed service
   cfg.picgoPicbedSupported = true
   cfg.bundledPicbedSupported = true
