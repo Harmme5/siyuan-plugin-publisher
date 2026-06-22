@@ -1,5 +1,20 @@
 # Changelog
 
+## Fork Maintenance (2026-06-22)
+
+### Features
+
+* **localsystem-hugo:** add an article category field for local system publishing when the YAML type is Hugo. The field maps to Hugo `categories`.
+
+### Bug Fixes
+
+* **localsystem:** respect the configured storage path when publishing posts and media. `realStorePath` is now only used for `[auto]` category path expansion.
+* **localsystem:** update the stored post path after a successful local file write so future updates point to the current output file.
+
+### Documentation
+
+* **readme:** document this repository as a personal maintenance fork and remove upstream-only community and donation links.
+
 ## [1.41.1](https://github.com/terwer/siyuan-plugin-publisher/compare/siyuan-plugin-publisher-v1.41.0...siyuan-plugin-publisher-v1.41.1) (2026-03-17)
 
 

@@ -6,11 +6,17 @@
 
 将思源笔记的文章发布到语雀等平台，`开源`、`免费` 。
 
+> 本仓库是
+> [terwer/siyuan-plugin-publisher](https://github.com/terwer/siyuan-plugin-publisher)
+> 的个人维护 fork，保留原项目的 GPL v3 许可证和版权声明，并包含面向个人使用场景的调整。
+
+## 本 fork 的改动
+
+- 修复本地系统发布时不使用配置中存储路径的问题。
+- 为本地系统 Hugo 发布新增面向 `categories` 的“文章种类”字段。
+- 清理 fork 文档，移除只适用于上游项目的社区和捐赠入口。
+
 > [猛击这里](https://siyuan.wiki/s/20230810132040-nn4q7vs)，查看最新帮助文档。
-
-**遇到其他问题或者需求建议？1群已满，请加QQ2群讨论。**
-
-[![](https://img.shields.io/badge/QQ群-722632752-blue)](https://qm.qq.com/cgi-bin/qm/qr?k=fYrA79XDvtr4JuEgez-dmj1h3tOef8pg&jump_from=webapi&authKey=DC+XcjkoTH762jxvkSgpt7V97QFETnaLVTZIWhd8PdZoX+MNSr+LsprWFYYELXu8)
 
 ## 快速上手
 
@@ -30,31 +36,7 @@
   - 支持发布到`文件系统`了
   - 一期已经支持本地系统，后续会陆续支持ftp、sftp、各种网盘等🎉
 
-请直接查看 [CHANGELOG](https://github.com/terwer/siyuan-plugin-publisher/blob/main/CHANGELOG.md)
-
-## 彩蛋
-
-[作者开发的其他思源笔记插件](https://github.com/terwer/zhi/blob/main/README_zh_CN.md#%E6%8F%92%E4%BB%B6)
-
-## 捐赠
-
-如果您认可这个项目，请我喝一杯咖啡吧，这将鼓励我持续更新，并创作出更多好用的工具~
-
-### 微信
-
-<div>
-<img src="https://static-rs-terwer.oss-cn-beijing.aliyuncs.com/donate/wechat.jpg" alt="wechat" style="width:280px;height:375px;" />
-</div>
-
-### 支付宝
-
-<div>
-<img src="https://static-rs-terwer.oss-cn-beijing.aliyuncs.com/donate/alipay.jpg" alt="alipay" style="width:280px;height:375px;" />
-</div>
-
-### 爱发电
-
-https://afdian.com/a/terwer
+请直接查看 [CHANGELOG](CHANGELOG.md)
 
 # 感谢
 
@@ -71,30 +53,3 @@ https://afdian.com/a/terwer
 | siyuan-note | 2.9.0+  |    D,V    |
 
 - 感谢 [leolee9086](https://github.com/leolee9086) 和 [赐我一胖]() 提供的图标资源
-
-- 感谢以下热心用户的支持，我会坚持一直持续更新维护下去！
-
-    - 2024-03-31 *仁 捐赠到 [发布工具]
-    
-    - 2024-03-22 *铭 捐赠到 [发布工具]
-    - 2024-03-05 *ruler 捐赠到 [发布工具]
-    
-    - 2024-03-12 *? 捐赠到 [发布工具]
-    - 2024-03-04 *azar 捐赠到 [发布工具]
-    - 2024-02-28 *昭 捐赠到 [发布工具]
-    - 2024-01-15 自* 捐赠到 [发布工具]
-    - 2024-01-09 自* 捐赠到 [发布工具]
-    - 2023-11-12 S* 捐赠到 [发布工具]
-    - 2023-10-15 *线 捐赠到 [发布工具]
-    - 2023-09-04 \*霞 捐赠到 [发布工具]
-    - 2023-08-31 \*成 捐赠到 [发布工具] 感谢提供笔记发布工具，催更
-    - 2023-08-31 \*? 捐赠到 [发布工具] 感谢提供思源笔记发布工具
-    - 2023-08-14 \*? 捐赠到 [发布工具]
-    - 2023-08-10 \*f 捐赠到 [发布工具] 为发布插件点赞
-    - 2023-08-10 \*2 捐赠到 [发布工具] 支持开发思源发布插件
-    - 2023-07-13 \*亮 捐赠到 [文档别名] 有没有可能把功能扩展到 H1？
-    - 2023-07-09 \*z 捐赠到 [在线分享] 在线分享插件好用，感谢
-    - 2023-06-14 \*俊 捐赠到 [文档漫游] 感谢文档漫游这个功能
-    - 2023-01-16 \*站 捐赠到 [导入工具] 终于可以导入 epub 了
-    
-      如果您不想展示捐赠信息，可直接发邮件到 youweics@163.com 。
